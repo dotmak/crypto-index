@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import Cryptotable from "@components/Cryptotable";
+import { useEffect, useState } from 'react';
+import Cryptotable from '@components/Cryptotable';
 
 function Home() {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
 
   return (
     <section>
@@ -22,7 +22,7 @@ function Home() {
             onChange={(e) => setQuery(e.target.value.toLowerCase())}
           />
         </div>
-        <Cryptotable />
+        <Cryptotable query={query} />
       </div>
     </section>
   );

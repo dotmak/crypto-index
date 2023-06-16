@@ -1,18 +1,28 @@
-"use client";
-import { useState, useEffect } from "react";
+'use client';
+import { useState, useEffect } from 'react';
 
-function Cryptotable({ query }) {
+const Cryptotable = ({ query }) => {
   const [cryptos, setCrypto] = useState([]);
+  const [filteredCryptos, setFilteredCryptos] = useState([]);
 
   useEffect(() => {
     fetch(
-      "https://api.coincap.io/v2/assets?bearer=3b51de28-9748-4366-ad23-1ced7213ec89"
+      'https://api.coincap.io/v2/assets?bearer=3b51de28-9748-4366-ad23-1ced7213ec89'
     )
       .then((res) => res.json())
       .then((data) => {
         setCrypto(data.data);
       });
   }, []);
+
+  useEffect(() => {
+    const filtered = cryptos.filter((crypto) => {
+      const name = crypto.name.toLowerCase();
+      const symbol = crypto.symbol.toLowerCase();
+      return name.includes(query) || symbol.includes(query);
+    });
+    setFilteredCryptos(filtered);
+  }, [cryptos, query]);
 
   return (
     <div className="crypto-table bg-[#372F46] rounded-[20px] p-4">
@@ -30,7 +40,7 @@ function Cryptotable({ query }) {
           </tr>
         </thead>
         <tbody>
-          {cryptos.map((crypto) => (
+          {filteredCryptos.map((crypto) => (
             <tr key={crypto.rank}>
               <td>{crypto.rank}</td>
               <td className="p-3">{crypto.symbol}</td>
@@ -54,6 +64,6 @@ function Cryptotable({ query }) {
       </table>
     </div>
   );
-}
+};
 
 export default Cryptotable;
