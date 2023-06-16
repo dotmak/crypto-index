@@ -1,9 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 
-function Cryptotable() {
+function Cryptotable({ query }) {
   const [cryptos, setCrypto] = useState([]);
-  const [keyword, setKeyword] = useState(null);
 
   useEffect(() => {
     fetch(

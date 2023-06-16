@@ -2,7 +2,7 @@ import Image from "next/image";
 
 function Header() {
   return (
-    <div className="header w-full">
+    <div className="header w-full mt-4">
       <div className="flex flex-row justify-between items-center mx-auto">
         <div className="site-logo">
           <Image
@@ -13,7 +13,7 @@ function Header() {
             className="invert"
           ></Image>
         </div>
-        <div className="menu">Home</div>
+        <div className="menu">HOME</div>
       </div>
     </div>
   );
