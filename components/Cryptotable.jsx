@@ -1,8 +1,22 @@
-import Cryptolist from "./Cryptolist";
+"use client";
+import { useState, useEffect } from "react";
 
 function Cryptotable() {
+  const [cryptos, setCrypto] = useState([]);
+  const [keyword, setKeyword] = useState(null);
+
+  useEffect(() => {
+    fetch(
+      "https://api.coincap.io/v2/assets?bearer=3b51de28-9748-4366-ad23-1ced7213ec89"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setCrypto(data.data);
+      });
+  }, []);
+
   return (
-    <div className="crypto-table p-4">
+    <div className="crypto-table bg-[#372F46] rounded-[20px] p-4">
       <table className="table-auto text-center w-full">
         <thead className="border-t-[1px] border-b-[1px] border-black">
           <tr>
@@ -16,7 +30,28 @@ function Cryptotable() {
             <th className="p-3">Circulating Supply</th>
           </tr>
         </thead>
-        <Cryptolist />
+        <tbody>
+          {cryptos.map((crypto) => (
+            <tr key={crypto.rank}>
+              <td>{crypto.rank}</td>
+              <td className="p-3">{crypto.symbol}</td>
+              <td className="p-3">{crypto.name}</td>
+              <td className="p-3">
+                {(Math.round(crypto.priceUsd * 100) / 100).toFixed(2)}$
+              </td>
+              <td className="p-3">
+                {(Math.round(crypto.changePercent24Hr * 100) / 100).toFixed(2)}%
+              </td>
+              <td className="p-3">
+                {(Math.round(crypto.marketCapUsd * 100) / 100).toFixed(2)}
+              </td>
+              <td className="p-3">
+                {(Math.round(crypto.supply * 100) / 100).toFixed(2)}
+              </td>
+              <td className="p-3">{crypto.maxSupply}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );

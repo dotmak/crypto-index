@@ -1,4 +1,5 @@
 import Cryptotable from "@components/Cryptotable";
+import Searchbar from "@components/Searchbar";
 
 function Home() {
   return (
@@ -6,8 +7,8 @@ function Home() {
       <div className="my-[2rem] text-[5rem] font-bold text-center">
         Crypto Index
       </div>
-
-      <div className="crypto-list bg-[#27262C] rounded-[25px]">
+      <div className="crypto-list">
+        <Searchbar />
         <Cryptotable />
       </div>
     </section>
