@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={montserrat.className}>
         <div className="bg-[#08060B] text-white">
-          <div className="main p-4 max-w-[1600px] mx-auto">
+          <div className="main p-4 max-w-[1600px] mx-auto min-h-screen">
             <Header />
             <div className="app">{children}</div>
           </div>

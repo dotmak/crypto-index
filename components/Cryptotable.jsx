@@ -1,5 +1,5 @@
-'use client';
-import { useState, useEffect } from 'react';
+"use client";
+import { useState, useEffect } from "react";
 
 const Cryptotable = ({ query }) => {
   const [cryptos, setCrypto] = useState([]);
@@ -7,7 +7,7 @@ const Cryptotable = ({ query }) => {
 
   useEffect(() => {
     fetch(
-      'https://api.coincap.io/v2/assets?bearer=3b51de28-9748-4366-ad23-1ced7213ec89'
+      "https://api.coincap.io/v2/assets?bearer=3b51de28-9748-4366-ad23-1ced7213ec89"
     )
       .then((res) => res.json())
       .then((data) => {
@@ -48,7 +48,14 @@ const Cryptotable = ({ query }) => {
               <td className="p-3">
                 {(Math.round(crypto.priceUsd * 100) / 100).toFixed(2)}$
               </td>
-              <td className="p-3">
+              <td
+                className={
+                  "p-3 " +
+                  (crypto.changePercent24Hr > 0
+                    ? "text-green-600"
+                    : "text-red-600")
+                }
+              >
                 {(Math.round(crypto.changePercent24Hr * 100) / 100).toFixed(2)}%
               </td>
               <td className="p-3">

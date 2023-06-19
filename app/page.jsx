@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import Cryptotable from '@components/Cryptotable';
+import { useEffect, useState } from "react";
+import Cryptotable from "@components/Cryptotable";
 
 function Home() {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
 
   return (
     <section>
       <div className="my-[2rem] text-[5rem] font-bold text-center">
-        Crypto Index
+        Top 100 Crypto Index
       </div>
       <div className="crypto-list">
         <div className="searchbar p-3">
